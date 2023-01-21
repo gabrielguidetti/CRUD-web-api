@@ -1,4 +1,13 @@
+using CRUD_web_api.Context;
+using CRUD_web_api.Repositories;
+using CRUD_web_api.Repositories.Interfaces;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddDbContext<ApiDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+builder.Services.AddScoped<IUserRepository, UserRepository>();
 
 // Add services to the container.
 
